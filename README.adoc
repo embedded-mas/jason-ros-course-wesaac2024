@@ -13,10 +13,20 @@ Tutorial on Jason-ROS - WESAAC 2024
 
 == Part 1. Introduction to ROS 
 
+=== ROS Topics
+
+==== Reading ROS topics
+
+==== Publishing in ROS topics
+
 Type the following command in a shell and observe the behaviour of the turtle:
 ----
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0, z: 1.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
 ----
+
+=== ROS Services
+
+==== Requesting ROS services
 
 == Part 2. Introduction to Jason
 
