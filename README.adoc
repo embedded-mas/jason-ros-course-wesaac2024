@@ -23,15 +23,19 @@ sudo docker exec  embedded-mas-example /bin/bash -c "source /opt/ros/humble/setu
 ----
 When the container is launched, go to link:http://localhost:8080/vnc.html[`http://localhost:8080/vnc.html`] to inspect the simulation.
 
-== Part 1. Introduction to ROS 
+== Part 1: Introduction to ROS 
 
-=== ROS Topics
+=== Task1: Understanding ROS Topics
+* Exercise 1.1.1. The command shown below lists the avaliable topics and the data type that they record. Type it and observe the output.
+----
+ros2 topic list -t
+----
 
-==== Reading ROS topics
-
-==== Publishing in ROS topics
-
-Type the following command in a shell and observe the behaviour of the turtle:
+* Exercise 1.1.2. ROS data type (also known as message types) may record complex data structures. Use the command below to check the data structure of the different data types. Replace `[data type]` by the data type to be ckecked.
+----
+ros2 interface show [data type]
+----
+* Exercise 1.2.3. Type the following command in a shell and observe the behaviour of the turtle:
 ----
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0, z: 1.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
 ----
