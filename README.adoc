@@ -35,12 +35,27 @@ ros2 topic list -t
 ----
 ros2 interface show [data type]
 ----
+
 * Exercise 1.2.3. Type the following command in a shell and observe the behaviour of the turtle:
 ----
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0, z: 1.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
 ----
 
-=== ROS Services
+=== Task2: ROS Services
+* Exercise 1.2.1. The command shown below lists the avaliable service and the data type that they request/return. Type it and observe the output.
+----
+ros2 service list -t
+----
+
+* Exercise 1.2.2. ROS service type define the structure of request and response data. Use the command below to check the data structure of the different service types. Replace `[service type]` by the data type to be ckecked. As a suggestion, check the type of the services `/rosapi/list_parameters` and `/turtle1/set_pen`. What are the inputs and outputs?
+----
+ros2 interface show [service type]
+----
+
+* Exercise 1.2.3. Type the following command in a shell and observe the behaviour of the turtle:
+----
+ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 5.0, y: 5.0, theta: 1}"
+----
 
 ==== Requesting ROS services
 
