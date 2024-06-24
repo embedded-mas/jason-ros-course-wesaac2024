@@ -25,7 +25,7 @@ When the container is launched, go to link:http://localhost:8080/vnc.html[`http:
 
 == Part 1: Introduction to ROS 
 
-=== Task1: Understanding ROS Topics
+=== Task 1.1: Understanding ROS Topics
 * Exercise 1.1.1. The command shown below lists the avaliable topics and the data type that they record. Type it and observe the output.
 ----
 ros2 topic list -t
@@ -36,12 +36,12 @@ ros2 topic list -t
 ros2 interface show [data type]
 ----
 
-* Exercise 1.2.3. Type the following command in a shell and observe the behaviour of the turtle:
+* Exercise 1.1.3. Type the following command in a shell and observe the behaviour of the turtle:
 ----
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0, z: 1.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
 ----
 
-=== Task2: ROS Services
+=== Task 1.2: ROS Services
 * Exercise 1.2.1. The command shown below lists the avaliable service and the data type that they request/return. Type it and observe the output.
 ----
 ros2 service list -t
@@ -57,9 +57,46 @@ ros2 interface show [service type]
 ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 5.0, y: 5.0, theta: 1}"
 ----
 
-==== Requesting ROS services
 
 == Part 2. Introduction to Jason
+
+=== Task 2.1: Run the first JaCaMo application
+
+Clone the repository at (https://github.com/maiquelb/jacamo-wesaac2023). Open the folder link:hands-on/lab1[`hands-on/lab1`] with the Visual Studio Code (or access it in the terminal).  Then, run the project by typing the command below in the terminal:
+
+----
+jacamo agents_intro.jcm 
+----
+
+
+
+=== Task 2.2: Reading and understanding agent programs
+
+* Exercise 2.2.1: open the JaCaMo application file (link:hands-on/lab1/agents_intro.jcm[`agents_intro.jcm`]) and the personal assistant agent code (file link:hands-on/lab1/src/agt/personal_assistant.asl[`src/agt/personal_assistant.asl`]). Read the files and identify the beliefs, goals, and plans. Try to map the program to the observed behavior. 
+
+* Exercise 2.2.2: open the link:http://localhost:3272/[_mind inspector_] for the agents `bob` and `marie`. Compare the beliefs there with those identified in the program. Are they the same? Are they represented the same way? 
+
+* Exercise 2.2.3: observe the plan in lines 13--14 of the personal assistant agent code (file link:hands-on/lab1/src/agt/personal_assistant.asl[`src/agt/personal_assistant.asl`]). What is the difference between this plan and the other ones?
+
+* Exercise 2.2.4: type the command below, replacing `<agent_id>` by the identifier of an agent (either `bob` or `marie`). Observe the behaviour of the agent. Open the link:http://localhost:3272/[_mind inspector_]  and check whether the belief base of the agent has changed after running this command.
+
+----
+curl --request POST 'http://127.0.1.1:8080/agents/<agent_id>/command' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'c=-+day_of_week(sunday)'
+----
+
+=== Task 2.3: Extending the agent program
+* Exercise 2.3.1: make the agent `bob` to inform the current date using the plan `inform_date`. The other agents must not give this information.
+
+* Exercise 2.3.2: add a new personal assistant agent to the system. This agent should greet in portuguese ("Bom dia.").
+
+* Exercise 2.3.3: set the language of bob to japanese without adding any plan. Run the system and observe the output. Handle exceptions if needed.
+
+
+==== Questons:
+* Where to the beliefs come from?
+* Where are the actions implemented?
+
+=== Task 2.1 Understanting and programming beliefs
 
 == Part 3: Introduction to Jason-ROS
 
