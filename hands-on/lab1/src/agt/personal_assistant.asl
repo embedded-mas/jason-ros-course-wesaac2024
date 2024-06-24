@@ -1,5 +1,3 @@
-!greet.
-
 +!greet : language(english)
     <- .print("hello world.").            
 
