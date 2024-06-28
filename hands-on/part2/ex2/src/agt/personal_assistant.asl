@@ -5,7 +5,8 @@
     <- .print("bonjour.").                
 
 +!start_clock
-   <- start.
+   <- setFrequency(10);
+      start.
 
 +!inform_date
    <- .date(Y,M,D); //check the current date
