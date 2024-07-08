@@ -1,0 +1,11 @@
+mas jason_ros {
+
+    agent robot1: ros_agent.asl {
+
+        ag-class: embedded.mas.bridges.jacamo.ros.RosBdiAgent
+        ag-arch: embedded.mas.bridges.jacamo.ros.RosBdiAgArch
+    }
+    
+
+    
+}
