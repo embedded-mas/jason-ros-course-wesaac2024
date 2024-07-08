@@ -39,7 +39,7 @@ cd ~/ros2_ws/ &&\
 colcon build &&\
 source install/setup.bash &&\
 rm -r ~/jason-ros-course-wesaac2024 &&\
-ros2 run embedded_mas_examples service)) && echo "READY")  &\ 
+ros2 run embedded_mas_examples service) & (/bin/bash -c "source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml")) && echo "READY")  &\ 
 wait '
 ----
 
