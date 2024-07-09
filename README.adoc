@@ -143,17 +143,21 @@ In this tutorial, we will develop a BDI agent that moves in a square environment
 
 The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot running in an extended version of the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. This extended simulator provides the following topics:
 
-[cols="1,1,1", options="header"]
+[cols="2,2,1", options="header"]
 |===
 | Topic name | Topic type | Description
 
 | /turtleX/energy
 | sts_msgs/Int32
-| Battery level of the robot.
+| Records an integer value representing the battery level of the robot.
 
 | /turtleX/alarm
 | std_msgs/String
-| Status of an alarm that monitors the environmental safety. Possible values of this topic are `safe` and `critical`
+| Records a String value representing the status of an alarm that monitors the environmental safety. Possible values of this topic are `safe` and `critical`
+
+| /turtleX/pose
+| turtlesim/Pose
+| Records a tuple (x, y, theta , linear_velocity, angular_velocity) where (i) `x` and `y` are the coordinates of the robot position in the cartesian coordinate system; (ii) `theta` is the angle between the robot's forward direction and the positive x-axis; (iii) `linear_velocity` is the speed at which the robot is moving in a straight line; and (iv) `angular_velocity`, is the rate of change of the robot's orientation.
 |===
 
 === Task 3.1: Configuring perceptions
