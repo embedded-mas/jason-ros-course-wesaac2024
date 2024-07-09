@@ -136,6 +136,19 @@ curl --request POST 'http://127.0.1.1:8080/agents/<agent_id>/command' --header '
 
 In this tutorial, we will develop a BDI agent that moves in a square environment. The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot.
 
+[cols="1,1,1", options="header"]
+|===
+| Topic name | Topic type | Description
+
+| /turtleX/energy
+| sts_msgs/Int32
+| battery level
+
+| /turtleX/alarm
+| std_msgs/String
+| alarm
+|===
+
 === Task 3.1: Configuring perceptions
 
 * Exercise 3.1.1. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. The file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent must just print its current position. The plan that implements this behaviour is right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If yes, 
