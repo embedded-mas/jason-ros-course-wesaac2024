@@ -12,7 +12,7 @@ Tutorial on Jason-ROS - WESAAC 2024
 
 == Preliminaries
 === Running ROS
-This course requires to install ROS (either version 1 or 2) and the turtlesim simulator. 
+This course requires to install ROS (either version 1 or 2) and the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. 
 As alternative, use the following commando to run a docker container with all the requirements installed.
 ----
 sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
@@ -25,7 +25,7 @@ sudo docker exec  embedded-mas-example /bin/bash -c "source /opt/ros/humble/setu
 ----
 sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
 sleep 2 &&\
-sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '((source /opt/ros/humble/setup.bash && ros2 run turtlesim turtlesim_node) & (source /opt/ros/humble/setup.bash && cd ~/ &&\
+sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '((source /opt/ros/humble/setup.bash && ros2 run  _node) & (source /opt/ros/humble/setup.bash && cd ~/ &&\
 git clone https://github.com/embedded-mas/jason-ros-course-wesaac2024.git &&\
 mkdir -p ~/ros2_ws/src &&\
 cd ~/ros2_ws/src &&\
@@ -134,7 +134,14 @@ curl --request POST 'http://127.0.1.1:8080/agents/<agent_id>/command' --header '
 
 == Part 3: Introduction to Jason-ROS
 
-In this tutorial, we will develop a BDI agent that moves in a square environment. The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot.
+In this tutorial, we will develop a BDI agent that moves in a square environment. This agent considers the following beliefs:
+
+* `battery_level(L)`: the avaliable energy level in the robot's battery is `L`. When `L=0`, there is no available energy.
+* `security_level(L)`: the current status environmental safety, This belief is supposed to be observed from some environmental device (e.g. an alarm).
+* `position(X,Y)`: the current position of the robot in a cartesian coordinate system.
+
+
+The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot running in an extended version of the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. This extended simulator provides the following topics:
 
 [cols="1,1,1", options="header"]
 |===
@@ -142,11 +149,11 @@ In this tutorial, we will develop a BDI agent that moves in a square environment
 
 | /turtleX/energy
 | sts_msgs/Int32
-| battery level
+| Battery level of the robot.
 
 | /turtleX/alarm
 | std_msgs/String
-| alarm
+| Status of an alarm that monitors the environmental safety. Possible values of this topic are `safe` and `critical`
 |===
 
 === Task 3.1: Configuring perceptions
