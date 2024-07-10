@@ -21,13 +21,19 @@
       #perceptionTopics: List of topics whose values are converted into perceptions.
       #                  Each topic requires to define its name and its type.   
   perceptionTopics:         
-      - topicName: turtle1/pose
-        topicType: turtlesim/Pose
-        beliefName: robot_position
-        ignoreValues: 
-           - x
-           - y
-           - theta
+      - topicName: /turtle1/energy
+        topicType: std_msgs/Int32
+        beliefName: batteryLevel 
+      - topicName: /turtle1/alarm
+        topicType: std_msgs/String
+        beliefName: security_level
+      #- topicName: turtle1/pose
+      #  topicType: turtlesim/Pose
+      #  beliefName: robot_position
+      #  ignoreValues: 
+      #     - x
+      #     - y
+      #     - theta
   actions:       
     topicWritingActions:          
       - actionName: move_robot

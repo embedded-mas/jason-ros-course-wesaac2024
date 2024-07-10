@@ -1,3 +1,4 @@
+//Exercise 3.1.1
 +position(X,Y) 
    <- .print("My position is (",X, ",", Y, ")").
 
