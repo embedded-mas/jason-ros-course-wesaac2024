@@ -25,7 +25,7 @@ sudo docker exec  embedded-mas-example /bin/bash -c "source /opt/ros/humble/setu
 ----
 sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
 sleep 2 &&\
-sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '((source /opt/ros/humble/setup.bash && ros2 run  _node) & (source /opt/ros/humble/setup.bash && cd ~/ &&\
+sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '((source /opt/ros/humble/setup.bash && ros2 run  turtlesim turtlesim_node) && (source /opt/ros/humble/setup.bash && cd ~/ &&\
 git clone https://github.com/embedded-mas/jason-ros-course-wesaac2024.git &&\
 mkdir -p ~/ros2_ws/src &&\
 cd ~/ros2_ws/src &&\
@@ -173,7 +173,8 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 
 * Exercise 3.1.1. Run the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. Check the beliefs of the agent `robot1` in the mind inspector available at link:http://127.0.1.1:3272/[http://127.0.1.1:3272]. Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/robot1.yaml[`src/agt/robot1.yaml`]
 
-* Exercise 3.1.2. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. The file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent must just print its current position. The plan that implements this behaviour is right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If yes, 
+* Exercise 3.1.2. 
+Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. The file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent that simply prints its current position and battery level. The plans that implement this behaviour are right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If it does not, make the necessary adjustments. 
 
 == Part 4: Advancing on Jason-ROS
 
