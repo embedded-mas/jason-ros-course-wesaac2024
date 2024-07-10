@@ -12,7 +12,7 @@ Tutorial on Jason-ROS - WESAAC 2024
 
 == Preliminaries
 === Running ROS
-This course requires to install ROS (either version 1 or 2) and the turtlesim simulator. 
+This course requires to install ROS (either version 1 or 2) and the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. 
 As alternative, use the following commando to run a docker container with all the requirements installed.
 ----
 sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
@@ -21,6 +21,38 @@ sudo docker run -it --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=ht
 (until sudo docker exec embedded-mas-example /bin/bash -c "echo '***** ROS container is ready *****'" 2>/dev/null; do echo "waiting for ROS container to start..."; sleep 1; done  && \
 sudo docker exec  embedded-mas-example /bin/bash -c "source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml")
 ----
+
+----
+sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
+sleep 2 &&\
+sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '((source /opt/ros/humble/setup.bash && ros2 run  _node) & (source /opt/ros/humble/setup.bash && cd ~/ &&\
+git clone https://github.com/embedded-mas/jason-ros-course-wesaac2024.git &&\
+mkdir -p ~/ros2_ws/src &&\
+cd ~/ros2_ws/src &&\
+ros2 pkg create --build-type ament_python embedded_mas_examples --dependencies std_msgs rclpy &&\
+mkdir -p ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ && \
+cd ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ &&\
+cp ~/jason-ros-course-wesaac2024/resources/turtlesim-extension/setup.py ~/ros2_ws/src/embedded_mas_examples/ &&\
+cp ~/jason-ros-course-wesaac2024/resources/turtlesim-extension/energy_turtle.py ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ &&\
+cd ~/ros2_ws/ &&\
+colcon build &&\
+source install/setup.bash &&\
+rm -r ~/jason-ros-course-wesaac2024 &&\
+ros2 run embedded_mas_examples service) & (/bin/bash -c "source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml"))' &&\
+sleep 5 &&\
+sudo docker exec turtles_example /bin/bash -c 'source /opt/ros/humble/setup.bash && ros2 topic pub -t 1 /turtle1/energy std_msgs/msg/Int32 "{data: 1000}"' &&\
+echo '**** DOCKER CONTAINER IS READY ****'
+----
+
+
+windows:
+docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest
+Start-Sleep -Seconds 2
+docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 powershell -Command "((source /opt/ros/humble/setup.bash && ros2 run _node) & (source /opt/ros/humble/setup.bash && cd ~/ && git clone https://github.com/embedded-mas/jason-ros-course-wesaac2024.git && mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src && ros2 pkg create --build-type ament_python embedded_mas_examples --dependencies std_msgs rclpy && mkdir -p ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ && cd ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ && cp ~/jason-ros-course-wesaac2024/resources/turtlesim-extension/setup.py ~/ros2_ws/src/embedded_mas_examples/ && cp ~/jason-ros-course-wesaac2024/resources/turtlesim-extension/energy_turtle.py ~/ros2_ws/src/embedded_mas_examples/embedded_mas_examples/ && cd ~/ros2_ws/ && colcon build && source install/setup.bash && rm -r ~/jason-ros-course-wesaac2024 && ros2 run embedded_mas_examples service) & (powershell -Command 'source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml'))"
+Start-Sleep -Seconds 5
+docker exec turtles_example powershell -Command "source /opt/ros/humble/setup.bash && ros2 topic pub -t 1 /turtle1/energy std_msgs/msg/Int32 '{data: 1000}'"
+echo '**** DOCKER CONTAINER IS READY ****'
+
 When the container is launched, go to link:http://localhost:8080/vnc.html[`http://localhost:8080/vnc.html`] to inspect the simulation.
 
 == Part 1: Introduction to ROS 
@@ -111,11 +143,37 @@ curl --request POST 'http://127.0.1.1:8080/agents/<agent_id>/command' --header '
 
 == Part 3: Introduction to Jason-ROS
 
-In this tutorial, we will develop a BDI agent that moves in a square environment. The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot.
+In this tutorial, we will develop a BDI agent that moves in a square environment. This agent considers the following beliefs:
+
+* `battery_level(L)`: the avaliable energy level in the robot's battery is `L`. When `L=0`, there is no available energy.
+* `security_level(L)`: the current status environmental safety, This belief is supposed to be observed from some environmental device (e.g. an alarm).
+* `position(X,Y)`: the current position of the robot in a cartesian coordinate system.
+
+
+The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot running in an extended version of the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. This extended simulator provides the following topics:
+
+[cols="2,2,1", options="header"]
+|===
+| Topic name | Topic type | Description
+
+| /turtleX/energy
+| sts_msgs/Int32
+| Records an integer value representing the battery level of the robot.
+
+| /turtleX/alarm
+| std_msgs/String
+| Records a String value representing the status of an alarm that monitors the environmental safety. Possible values of this topic are `safe` and `critical`
+
+| /turtleX/pose
+| turtlesim/Pose
+| Records a tuple (x, y, theta , linear_velocity, angular_velocity) where (i) `x` and `y` are the coordinates of the robot position in the cartesian coordinate system; (ii) `theta` is the angle between the robot's forward direction and the positive x-axis; (iii) `linear_velocity` is the speed at which the robot is moving in a straight line; and (iv) `angular_velocity`, is the rate of change of the robot's orientation.
+|===
 
 === Task 3.1: Configuring perceptions
 
-* Exercise 3.1.1. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. The file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent must just print its current position. The plan that implements this behaviour is right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If yes, 
+* Exercise 3.1.1. Run the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. Check the beliefs of the agent `robot1` in the mind inspector available at link:http://127.0.1.1:3272/[http://127.0.1.1:3272]. Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.yaml[`src/agt/robot1.yaml`]
+
+* Exercise 3.1.2. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. The file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent must just print its current position. The plan that implements this behaviour is right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If yes, 
 
 == Part 4: Advancing on Jason-ROS
 
