@@ -190,7 +190,9 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0}} "
 ```
 
-The plans that implement this behaviour are right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If it does not, make the necessary adjustments. 
+=== Task 3.1: Configuring actions
+
+sss
 
 == Part 4: Advancing on Jason-ROS
 
