@@ -50,8 +50,8 @@ class TurtleSimNode(Node):
         global alarm
         global pen_turtle1
         global pen_turtle2        
+        print("Energy turtle 1: " + str(self.energy_turtle1))
         if self.energy_turtle1 > 0:
-            self.get_logger().info("**** Energy: ", str(self.energy_turtle1) )
             self.energy_turtle1 -= random.uniform(1, energy_decrement_max)
             self.publisher1.publish(Int32(data=int(self.energy_turtle1)))
             if self.energy_turtle1 >= 65:
