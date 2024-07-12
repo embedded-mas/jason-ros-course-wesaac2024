@@ -195,11 +195,11 @@ Besides, the simulator provides the following services:
 |===
 | Service name | Service type | Description
 
-| /turtle1/teleport_absolute
+| /turtleX/teleport_absolute
 | turtlesim/srv/TeleportAbsolute
 | Moves the robot’s to a given point (x, y ) in the environment and rotates the robot if needed
 
-| /turtle1/teleport_relative
+| /turtleX/teleport_relative
 | /turtlesim/srv/TeleportRelative
 | Moves the robot’s along a given distance forward/backward and rotates the robot if needed.
 |===
@@ -218,7 +218,7 @@ ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y
 
 === Task 3.1: Configuring actions
 
-sss
+The actions of the agents can be concretely carried out through topic writing and service requests. The effectors of the robot are controlled by the topic `/turtleX/cmd_vel` and by the services `turtleX/teleport_absolute` and `/turtleX/teleport_relative`.
 
 == Part 4: Advancing on Jason-ROS
 
