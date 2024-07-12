@@ -159,6 +159,12 @@ In this tutorial, we will develop a BDI agent that moves in a square environment
 * `security_level(L)`: the current status environmental safety, This belief is supposed to be observed from some environmental device (e.g. an alarm).
 * `position(X,Y)`: the current position of the robot in a cartesian coordinate system.
 
+In addition, this agent has the following repertory of actions:
+
+* `go_to(X,Y)`: the robot goes to the coordinate (X,Y).
+* `move(D)`: the robot moves forward by a distance `D`.
+* `rotate\(R)`: the robot rotates by an angle R (in radians) around its own axis
+
 
 The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot running in an extended version of the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. This extended simulator provides the following topics:
 
@@ -177,7 +183,27 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 | /turtleX/pose
 | turtlesim/Pose
 | Records a tuple (x, y, theta , linear_velocity, angular_velocity) where (i) `x` and `y` are the coordinates of the robot position in the cartesian coordinate system; (ii) `theta` is the angle between the robot's forward direction and the positive x-axis; (iii) `linear_velocity` is the speed at which the robot is moving in a straight line; and (iv) `angular_velocity`, is the rate of change of the robot's orientation.
+
+| /turtleX/cmd_vel
+| geometry_msgs/Twist
+| Records the intended linear and angular velocity of the robot. The robot controller reads the topic and adjusts its velocity accordingly, keeping the velocity for 1 second
 |===
+
+
+Besides, the simulator provides the following services:
+[cols="2,2,1", options="header"]
+|===
+| Service name | Service type | Description
+
+| /turtleX/teleport_absolute
+| turtlesim/srv/TeleportAbsolute
+| Moves the robot’s to a given point (x, y ) in the environment and rotates the robot if needed
+
+| /turtleX/teleport_relative
+| /turtlesim/srv/TeleportRelative
+| Moves the robot’s along a given distance forward/backward and rotates the robot if needed.
+|===
+
 
 === Task 3.1: Configuring perceptions
 
@@ -190,7 +216,9 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0}} "
 ```
 
-The plans that implement this behaviour are right below the comment `//Exercise 3.1.1`. Run the application and check whether the robot behaves as expected. If it does not, make the necessary adjustments. 
+=== Task 3.2: Configuring actions
+
+The actions of the agents can be concretely carried out through topic writing and service requests. The effectors of the robot are controlled by the topic `/turtleX/cmd_vel` and by the services `turtleX/teleport_absolute` and `/turtleX/teleport_relative`.
 
 == Part 4: Advancing on Jason-ROS
 
