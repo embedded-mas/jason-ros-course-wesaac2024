@@ -181,10 +181,6 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 | /turtleX/cmd_vel
 | geometry_msgs/Twist
 | Records the intended linear and angular velocity of the robot. The robot controller reads the topic and adjusts its velocity accordingly, keeping the velocity for 1 second
-
-| /turtleX/cmd_vel
-| geometry_msgs/Twist
-| Records the intended linear and angular velocity of the robot. The robot controller reads the topic and adjusts its velocity accordingly, keeping the velocity for 1 second
 |===
 
 === Task 3.1: Configuring perceptions
