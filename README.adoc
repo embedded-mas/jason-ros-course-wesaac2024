@@ -78,26 +78,32 @@ ros2 topic list -t
 ros2 interface show [data type]
 ----
 
-* Exercise 1.1.3. Type the following command in a shell and observe the behaviour of the turtle:
-----
-ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 1.0, z: 1.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
-----
+* Exercise 1.1.3. The topic `/turtle1/cmd_vel` records the intended linear and angular velocity of the robot. The robot's controllers read the topic and adjust its velocity accordingly. On the other hand, the robot publishes its current position in the topic `/turtle1/pose`. This exercise explores these topics.
 
+** Type the following command in a shell and observe the output: `ros2 topic echo /turtle1/pose`
+
+** Publish values in the topic `/turtle1/cmd_vel`, changing the values of the parameters `linear.x`, `linear.y`, and `angular.z`, as illustrated below. Observe the reaction of the robot to each command. Observe also the values of the topic `/turtle1/cmd_vel`.
+
+  ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
+  ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 0.0, y: 1.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
+  ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.0}} "
+  
 === Task 1.2: ROS Services
 * Exercise 1.2.1. The command shown below lists the avaliable service and the data type that they request/return. Type it and observe the output.
-----
-ros2 service list -t
-----
-
+ 
+ ros2 service list -t
+ 
 * Exercise 1.2.2. ROS service type define the structure of request and response data. Use the command below to check the data structure of the different service types. Replace `[service type]` by the data type to be ckecked. As a suggestion, check the type of the services `/rosapi/list_parameters` and `/turtle1/set_pen`. What are the inputs and outputs?
-----
-ros2 interface show [service type]
-----
 
-* Exercise 1.2.3. Type the following command in a shell and observe the behaviour of the turtle:
-----
-ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 5.0, y: 5.0, theta: 1}"
-----
+ ros2 interface show [service type]
+
+* Exercise 1.2.3. Type the command below in a shell and observe the behaviour of the turtle. Try different values for the fields `x`, `y`, and `z`.
+
+ ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 5.0, y: 5.0, theta: 1}"
+
+* Exercise 1.2.4. Type the command below in a shell and observe the behaviour of the turtle. Try different values for the fields `linear`, and `angular`.
+
+ ros2 service call /turtle1/teleport_relative turtlesim/srv/TeleportRelative "{linear: 1.0, angular: 1.0}"
 
 
 == Part 2. Introduction to Jason
@@ -219,6 +225,12 @@ ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y
 === Task 3.2: Configuring actions
 
 The actions of the agents can be concretely carried out through topic writing and service requests. The effectors of the robot are controlled by the topic `/turtleX/cmd_vel` and by the services `turtleX/teleport_absolute` and `/turtleX/teleport_relative`.
+
+
+ex2: implementar a ação go_to, mover-se até 2,2
+ex3: implementar a ação move, mover-se uma unidade à frente e  uma acima
+ex3: desenhar um quadrado (usar crenças e ações juntos)
+
 
 == Part 4: Advancing on Jason-ROS
 
