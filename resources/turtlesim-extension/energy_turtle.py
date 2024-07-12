@@ -37,7 +37,7 @@ class TurtleSimNode(Node):
         
     def create_random_timer(self):
         # Set a random interval betweem 1 and 20 seconds
-        random_interval = random.uniform(0.5, 2.0)
+        random_interval = random.uniform(1.0, 10.0)
         self.timer = self.create_timer(random_interval, self.timer_callback)
         self.get_logger().info(f'New timer created with interval: {random_interval:.2f} seconds')
 
