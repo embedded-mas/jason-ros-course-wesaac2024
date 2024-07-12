@@ -189,6 +189,22 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 | Records the intended linear and angular velocity of the robot. The robot controller reads the topic and adjusts its velocity accordingly, keeping the velocity for 1 second
 |===
 
+
+Besides, the simulator provides the following services:
+[cols="2,2,1", options="header"]
+|===
+| Service name | Service type | Description
+
+| /turtle1/teleport_absolute
+| turtlesim/srv/TeleportAbsolute
+| Moves the robot’s to a given point (x, y ) in the environment and rotates the robot if needed
+
+| /turtle1/teleport_relative
+| /turtlesim/srv/TeleportRelative
+| Moves the robot’s along a given distance forward/backward and rotates the robot if needed.
+|===
+
+
 === Task 3.1: Configuring perceptions
 
 * Exercise 3.1.1. Run the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`part3/ex1`]. Check the beliefs of the agent `robot1` in the mind inspector available at link:http://127.0.1.1:3272/[http://127.0.1.1:3272]. Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/robot1.yaml[`src/agt/robot1.yaml`]
