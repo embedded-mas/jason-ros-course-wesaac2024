@@ -177,6 +177,10 @@ The cognitive portion of the agent is programmed with Jason. The body of the age
 | /turtleX/pose
 | turtlesim/Pose
 | Records a tuple (x, y, theta , linear_velocity, angular_velocity) where (i) `x` and `y` are the coordinates of the robot position in the cartesian coordinate system; (ii) `theta` is the angle between the robot's forward direction and the positive x-axis; (iii) `linear_velocity` is the speed at which the robot is moving in a straight line; and (iv) `angular_velocity`, is the rate of change of the robot's orientation.
+
+| /turtleX/cmd_vel
+| geometry_msgs/Twist
+| Records the intended linear and angular velocity of the robot. The robot controller reads the topic and adjusts its velocity accordingly, keeping the velocity for 1 second
 |===
 
 === Task 3.1: Configuring perceptions
