@@ -29,10 +29,19 @@ class TurtleSimNode(Node):
         self.service = self.create_service(Empty, 'turtle1/consume_energy', self.consume_energy)
         
         # Inicialização do timer
-        self.timer = self.create_timer(1.0, self.timer_callback)
+        #self.timer = self.create_timer(1.0, self.timer_callback)
+        self.create_random_timer()
         
         self.energy_turtle1 = -1
         self.energy_turtle2 = -1
+        
+    def create_random_timer(self):
+        # Set a random interval betweem 1 and 20 seconds
+        random_interval = random.uniform(0.5, 2.0)
+        self.timer = self.create_timer(random_interval, self.timer_callback)
+        self.get_logger().info(f'New timer created with interval: {random_interval:.2f} seconds')
+
+        
 
     def callback_turtle1(self, msg):
         self.energy_turtle1 = msg.data
@@ -88,6 +97,10 @@ class TurtleSimNode(Node):
                 command = f'ros2 param set /turtlesim background_r 69 && ros2 param set /turtlesim background_g 86 && ros2 param set /turtlesim background_b 255 && ros2 service call /clear std_srvs/srv/Empty && ros2 topic pub /turtle1/alarm std_msgs/msg/String "data: safe" && ros2 topic pub /turtle2/alarm std_msgs/msg/String "data: safe"'
                 subprocess.Popen(command, shell=True)
                 self.get_logger().info("**** Safe alarm level *****")
+        
+        # Cancela o timer atual e cria um novo com um intervalo aleatório
+        self.timer.cancel()
+        self.create_random_timer()
 
 def main(args=None):
     rclpy.init(args=args)
