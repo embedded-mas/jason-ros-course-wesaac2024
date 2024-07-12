@@ -159,6 +159,12 @@ In this tutorial, we will develop a BDI agent that moves in a square environment
 * `security_level(L)`: the current status environmental safety, This belief is supposed to be observed from some environmental device (e.g. an alarm).
 * `position(X,Y)`: the current position of the robot in a cartesian coordinate system.
 
+In addition, this agent has the following repertory of actions:
+
+* `go_to(X,Y)`: the robot goes to the coordinate (X,Y).
+* `move(D)`: the robot moves forward by a distance `D`.
+* `rotate(R)`: the robot rotates by an angle R (in radians) around its own axis
+
 
 The cognitive portion of the agent is programmed with Jason. The body of the agent is a turtlebot running in an extended version of the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. This extended simulator provides the following topics:
 
