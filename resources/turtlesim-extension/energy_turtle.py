@@ -28,6 +28,9 @@ class TurtleSimNode(Node):
         self.create_subscription(Int32, '/turtle2/energy', self.callback_turtle2, 10)
         self.service = self.create_service(Empty, 'turtle1/consume_energy', self.consume_energy)
         
+        self.service = self.create_service(Empty, 'turtle1/do_recharge', self.do_recharge_turtle1)
+        
+        
         # Inicialização do timer
         #self.timer = self.create_timer(1.0, self.timer_callback)
         self.create_random_timer()
@@ -54,6 +57,12 @@ class TurtleSimNode(Node):
     def consume_energy(self, request, response):
         self.get_logger().info('Iniciando consumo de energia...')
         return Empty.Response()
+        	
+	
+   def do_recharge_turtle1(self, request, response):
+        if(self.energy_turtle1<100):
+           self.energy_turtle1 = self.energy_turtle1 + randint(1, 10)
+        return Empty.Response()	        
 
     def timer_callback(self):
         global alarm
