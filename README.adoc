@@ -206,12 +206,14 @@ Besides, the simulator provides the following services:
 | float32 x +
   float32 y +
   float32 theta
-| Moves the robot’s to a given point (x, y ) in the environment and rotates the robot if needed
+| Moves the robot’s to a given point (x, y ) +
+  in the environment and rotates the robot if needed
 
 | /turtleX/teleport_relative
 | turtlesim/srv/TeleportRelative
 | p2
-| Moves the robot’s along a given distance forward/backward and rotates the robot if needed.
+| Moves the robot’s along a given distance + 
+  forward/backward and rotates the robot if needed.
 |===
 
 
