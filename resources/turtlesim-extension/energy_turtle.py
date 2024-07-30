@@ -61,7 +61,7 @@ class TurtleSimNode(Node):
 	
     def do_recharge_turtle1(self, request, response):
         if(self.energy_turtle1<100):
-           self.energy_turtle1 = self.energy_turtle1 + randint(10, 50)
+           self.energy_turtle1 += randint(10, 50)
         return Empty.Response()	        
 
     def timer_callback(self):
