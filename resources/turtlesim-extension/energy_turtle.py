@@ -29,6 +29,7 @@ class TurtleSimNode(Node):
         self.service = self.create_service(Empty, 'turtle1/consume_energy', self.consume_energy)
         
         self.service = self.create_service(Empty, 'turtle1/do_recharge', self.do_recharge_turtle1)
+               
         
         
         # Inicialização do timer
@@ -60,9 +61,11 @@ class TurtleSimNode(Node):
         	
 	
     def do_recharge_turtle1(self, request, response):
-        if(self.energy_turtle1<100):
-           self.energy_turtle1 += randint(10, 50)
-        return Empty.Response()	        
+        if self.energy_turtle1 < 100:
+           increment = random.randint(10, 50)  
+           self.energy_turtle1 = min(self.energy_turtle1 + increment, 100)  # ensure max energy = 100
+           self.get_logger().info(f'Energy turtle 1 recharged by {increment}, new energy: {self.energy_turtle1}')
+        return Empty.Response() 
 
     def timer_callback(self):
         global alarm
