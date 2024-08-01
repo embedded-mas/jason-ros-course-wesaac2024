@@ -24,7 +24,7 @@ public class InternalActionGenerator  {
 
     private static void writeToFile(String deviceId, String actionName, String serviceName, List<String> params) {
 
-        String fileContent = "package jason.stdlib; \n" +
+        String fileContent = "package jason.stdlib; \n\n" +
                 "import embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction;\n" +
                 "import jason.asSemantics.DefaultInternalAction;\n" +
                 "import jason.asSemantics.TransitionSystem;\n" +
@@ -32,21 +32,21 @@ public class InternalActionGenerator  {
                 "import jason.asSyntax.ListTermImpl;\n" +
                 "import jason.asSyntax.Term;\n" +
 
-                "import static jason.asSyntax.ASSyntax.createAtom;\n" +
+                "import static jason.asSyntax.ASSyntax.createAtom;\n\n" +
 
-                "public class "+ actionName +" extends embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction {\n" +
+                "public class "+ actionName +" extends embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction {\n\n" +
 
                 "        @Override\n" +
                 "        public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {\n" +
 
                 "            ListTermImpl parameters = new ListTermImpl();\n" +
-                "           for(Term t:args) parameters.add(t);\n" +
+                "            for(Term t:args) parameters.add(t);\n" +
 
                 "            Term[] arguments = new Term[3];\n" +
                 "            arguments[0] =  createAtom(\"" + deviceId + "\"); \n" +
-                "           arguments[1] =  createAtom( this.getClass().getSimpleName());\n" +
-                "           arguments[2] = parameters;\n" +
-                "           return super.execute(ts, un,  arguments);            \n" +
+                "            arguments[1] =  createAtom( this.getClass().getSimpleName());\n" +
+                "            arguments[2] = parameters;\n" +
+                "            return super.execute(ts, un,  arguments);            \n" +
                 "        }\n" +
                 "}";
 
