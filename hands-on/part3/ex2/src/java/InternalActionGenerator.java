@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
 
+import java.io.File;
+
 public class InternalActionGenerator  {
 
     private static void writeToFile(String deviceId, String actionName, String serviceName, List<String> params) {
@@ -49,6 +51,9 @@ public class InternalActionGenerator  {
                 "            return super.execute(ts, un,  arguments);            \n" +
                 "        }\n" +
                 "}";
+
+        File directory = new File("src/java/jason/stdlib");
+        if (!directory.exists()) directory.mkdirs();
 
         Path filePath = Paths.get("src/java/jason/stdlib/" + actionName + ".java");
 
