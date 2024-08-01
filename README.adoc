@@ -167,7 +167,7 @@ In this tutorial, we will develop a BDI agent that moves in a square environment
 
 In addition, this agent has the following repertory of actions:
 
-* `go_to(X,Y)`: the robot goes to the coordinate (X,Y).
+* `move_to(X,Y)`: the robot goes to the coordinate (X,Y).
 * `move(D)`: the robot moves forward by a distance `D`.
 * `rotate\(R)`: the robot rotates by an angle R (in radians) around its own axis
 
@@ -235,7 +235,9 @@ ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y
 The actions of the agents can be concretely carried out through topic writing and service requests. The effectors of the robot are controlled by the topic `/turtleX/cmd_vel` and by the services `turtleX/teleport_absolute` and `/turtleX/teleport_relative`.
 
 
-ex2: implementar a ação go_to, mover-se até 2,2
+* Exercise 3.2.1: make the agent to use the action `move_to` move to the coordinates (2,2). This action must be realized through the ROS service `/turtleX/teleport_absolute`. This requires changes in the code of the agent (.asl file) and in the connection between the action `move_to` and the ROS service that actually realizes it, specified in the .yaml file. The comment "TODO: Exercice 3.2.1:" indicates the place where the changes must be implemented in both the files.
+
+
 ex3: implementar a ação move, mover-se uma unidade à frente e  uma acima
 ex3: desenhar um quadrado (usar crenças e ações juntos)
 
