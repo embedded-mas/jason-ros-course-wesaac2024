@@ -103,6 +103,8 @@ ros2 interface show [data type]
 
 * Exercise 1.2.4. Type the command below in a shell and observe the behaviour of the turtle. Try different values for the fields `linear`, and `angular`.
 
+* Exercise 1.2.5. Use the service `/turtle1/teleport_absolute` to move the robot by 2 units of distance of 2 to the right and then upwards.
+
  ros2 service call /turtle1/teleport_relative turtlesim/srv/TeleportRelative "{linear: 1.0, angular: 1.0}"
 
 
@@ -211,7 +213,8 @@ Besides, the simulator provides the following services:
 
 | /turtleX/teleport_relative
 | turtlesim/srv/TeleportRelative
-| p2
+| float32 linear +
+  float32 angular
 | Moves the robot’s along a given distance + 
   forward/backward and rotates the robot if needed.
 |===
@@ -235,8 +238,9 @@ ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y
 The actions of the agents can be concretely carried out through topic writing and service requests. The effectors of the robot are controlled by the topic `/turtleX/cmd_vel` and by the services `turtleX/teleport_absolute` and `/turtleX/teleport_relative`.
 
 
-* Exercise 3.2.1: Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex2[`part3/ex2`]. Make the agent to use the action `move_to` move to the coordinates (2,2). This action must be realized through the ROS service `/turtleX/teleport_absolute`. This requires changes in the code of the agent (link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2/src/agt/ros_agent.asl[.asl file]) and in the connection between the action `move_to` and the ROS service that actually realizes it, specified in the link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2/src/agt/robot1.yaml[.yaml file]. The comment "TODO: Exercice 3.2.1:" indicates the place where the changes must be implemented in both the files.
+* Exercise 3.2.1: Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex2.1[`part3/ex2.1`]. Make the agent to use the action `move_to` to go to the coordinates (2,2). This action must be realized through the ROS service `/turtleX/teleport_absolute`. This requires changes in the code of the agent (link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2.1/src/agt/ros_agent.asl[.asl file]) and in the connection between the action `move_to` and the ROS service that actually realizes it, specified in the link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2.1/src/agt/robot1.yaml[.yaml file]. The comment "TODO: Exercice 3.2.1:..." indicates the place where the changes must be implemented in both the files.
 
+* Exercise 3.2.2: Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex2.2[`part3/ex2.2`]. Make the agent to use the action `move` to move along 2 distance units to the right and then 2 distance units upwards. The `move` action must be realized through the ROS service `/turtleX/teleport_relative`. This requires changes in the code of the agent (link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2.2/src/agt/ros_agent.asl[.asl file]) and in the connection between the action `move_to` and the ROS service that actually realizes it, specified in the link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex2.2/src/agt/robot1.yaml[.yaml file]. The comment "TODO: Exercice 3.2.2:..." indicates the place where the changes must be implemented in both the files.
 
 ex3: implementar a ação move, mover-se uma unidade à frente e  uma acima
 ex3: desenhar um quadrado (usar crenças e ações juntos)
