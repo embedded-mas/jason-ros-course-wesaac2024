@@ -25,4 +25,4 @@
           params:
             - time
             - charging_current 
-          #TODO: Exercice 3.2.1: configure the agent's action move_to
+        #TODO: Exercice 3.2.2: configure the agent's action move

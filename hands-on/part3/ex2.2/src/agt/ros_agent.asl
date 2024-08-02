@@ -2,14 +2,8 @@
 
 +!walk 
    <- .wait(2000); //wait two seconds
-      //TODO: Exercise 3.2.1: use the appropriate internal action to make the agent to move to (2,2)
+      //TODO: Exercise 3.2.2: use the appropriate internal action to make the agent to move to right and then upwards
       .
-
-
-+position(X,Y)
-   <- .print("My position is (",X,",",Y,")").
-
-
 
 
 
