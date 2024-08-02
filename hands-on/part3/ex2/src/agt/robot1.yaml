@@ -25,10 +25,4 @@
           params:
             - time
             - charging_current 
-        - actionName: move_to
-          serviceName: /turtle1/teleport_absolute
-          params:
-             - x
-             - y
-             - theta
-        
+          #TODO: Exercice 3.2.1: configure the agent's action move_to

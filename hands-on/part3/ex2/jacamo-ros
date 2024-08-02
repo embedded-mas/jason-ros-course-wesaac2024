@@ -1,1 +1,1 @@
-./gradlew jacamo_ros && ./gradlew run
+./gradlew compileGeneratedInternalActions && ./gradlew run

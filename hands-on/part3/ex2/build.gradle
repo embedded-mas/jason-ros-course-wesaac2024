@@ -35,10 +35,8 @@ repositories {
 }
 
 dependencies {
-    //implementation('org.jacamo:jacamo:1.2')
-    //implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
     implementation 'org.jacamo:jacamo:1.2.3'
-    implementation "embedded-mas:embedded-mas:0.059018-ROS" 
+    implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
     implementation 'org.yaml:snakeyaml:2.0'
 }
 
@@ -77,20 +75,18 @@ task run (type: JavaExec, dependsOn: ['compileGeneratedInternalActions','classes
     classpath sourceSets.main.runtimeClasspath
 }
 
+// Generate internal actions
 task generateInternalActions(type: JavaExec) {
     group = 'Application'
     description = 'Generate custom internal actions'
     classpath = sourceSets.main.runtimeClasspath
-    //main = 'com.example.InternalActionGenerator'
-    main = 'InternalActionGenerator'
+    main = 'embedded.mas.bridges.jacamo.InternalActionGenerator'
 
 }
 
 
-task jacamo_ros(dependsOn: ['compileGeneratedInternalActions']){
-}
 
-// Task de compilação das ações internas geradas
+// Compile the generated internal actions
 task compileGeneratedInternalActions(type: JavaCompile) {
      source = fileTree('build/generated/sources')
     classpath = sourceSets.main.compileClasspath
