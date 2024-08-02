@@ -1,0 +1,34 @@
+- device_id: sample_roscore #device identifier. It is up to the designer to choose this name.
+  className:  embedded.mas.bridges.ros.RosMaster
+  microcontroller: 
+      id: ros1 #microcontroller identifier. It is up to the designer to choose this name.
+      connectionString: ws://localhost:9090 #connection with ROS      
+      className: DefaultRos4Bdi        
+  perceptionTopics:         
+      - topicName: /turtle1/energy
+        topicType: std_msgs/Int32
+        beliefName: batteryLevel 
+      - topicName: /turtle1/alarm
+        topicType: std_msgs/String
+        beliefName: security_level
+      - topicName: turtle1/pose
+        topicType: turtlesim/Pose
+        beliefName: position
+        ignoreValues: 
+          - theta
+          - linear_velocity
+          - angular_velocity
+  actions:
+    topicWritingActions:          
+      - actionName: move_robot
+        topicName: /turtle1/cmd_vel
+        topicType: geometry_msgs/Twist 
+        params:
+           - linear:
+              - x
+              - y
+              - z
+           - angular:
+              - x
+              - y
+              - z     
