@@ -20,13 +20,18 @@ When the container is launched, go to link:http://localhost:8080/vnc.html[`http:
 
 == Part 1: Introduction to ROS 
 
+Note: if you are running ROS with Docker, open the container terminal with the following command: 
+----
+sudo docker exec -it turtles_example bash
+----
+
 === Task 1.1: Understanding ROS Topics
 * Exercise 1.1.1. The command shown below lists the avaliable topics and the data type that they record. Type it and observe the output.
 ----
 ros2 topic list -t
 ----
 
-* Exercise 1.1.2. ROS data type (also known as message types) may record complex data structures. Use the command below to check the data structure of the different data types. Replace `[data type]` by the data type to be ckecked.
+* Exercise 1.1.2. ROS data type (also known as message types) may record complex data structures. Use the command below to check the data structure of the different data types. Replace `[data type]` by the data type to be checked.
 ----
 ros2 interface show [data type]
 ----
@@ -56,9 +61,13 @@ ros2 interface show [data type]
 
 * Exercise 1.2.4. Type the command below in a shell and observe the behaviour of the turtle. Try different values for the fields `linear`, and `angular`.
 
-* Exercise 1.2.5. Use the service `/turtle1/teleport_absolute` to move the robot by 2 units of distance of 2 to the right and then upwards.
-
+----
  ros2 service call /turtle1/teleport_relative turtlesim/srv/TeleportRelative "{linear: 1.0, angular: 1.0}"
+----
+
+* Exercise 1.2.5. Use the service `/turtle1/teleport_relative` to move the robot by 2 units of distance of 2 to the right and then upwards.
+
+
 
 
 == Part 2. Introduction to Jason
