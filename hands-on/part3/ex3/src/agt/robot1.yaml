@@ -1,0 +1,28 @@
+- device_id: sample_roscore #device identifier. It is up to the designer to choose this name.
+  className:  embedded.mas.bridges.ros.RosMaster
+  microcontroller: 
+      id: ros1 #microcontroller identifier. It is up to the designer to choose this name.
+      connectionString: ws://localhost:9090 #connection with ROS      
+      className: DefaultRos4Bdi        
+  perceptionTopics:         
+      - topicName: /turtle1/energy
+        topicType: std_msgs/Int32
+        beliefName: batteryLevel 
+      - topicName: /turtle1/alarm
+        topicType: std_msgs/String
+        beliefName: security_level
+      - topicName: turtle1/pose
+        topicType: turtlesim/Pose
+        beliefName: position
+        ignoreValues: 
+          - theta
+          - linear_velocity
+          - angular_velocity
+  actions:
+    serviceRequestActions:
+        - actionName: recharge_battery
+          serviceName: /turtle1/do_recharge
+          params:
+            - time
+            - charging_current 
+          #TODO: Exercice 3.2.1: configure the agent's action move_to
