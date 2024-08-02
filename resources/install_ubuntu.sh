@@ -1,7 +1,6 @@
 apt-get update &&\ 
 apt-get upgrade -y &&\
 
-
 apt install -y openjdk-17-jdk git software-properties-common apt-transport-https wget unzip &&\
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg &&\
