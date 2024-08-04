@@ -13,7 +13,7 @@ energy_turtle1 = -1
 energy_turtle2 = -1
 time_to_wait_min = 1
 time_to_wait_max = 5
-energy_decrement_max = 5
+energy_decrement_max = 50
 alarm = 0
 
 pen_turtle1 = [255, 255, 255, 12, 0]
