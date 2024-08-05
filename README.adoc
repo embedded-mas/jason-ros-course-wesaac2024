@@ -72,7 +72,7 @@ ros2 interface show [data type]
 
 === Task 2.1: Run the first JaCaMo application
 
-Open the folder link:hands-on/part2/ex1[`hands-on/part2/ex1`] with the Visual Studio Code (or access it in the terminal).  Then, run the project by typing the command below in the terminal:
+Exercise 2.1.1. Open the folder link:hands-on/part2/ex1[`hands-on/part2/ex1`] with the Visual Studio Code (or access it in the terminal).  Then, run the project by typing the command below in the terminal:
 
 ----
 jacamo agents_intro.jcm 
