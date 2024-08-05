@@ -40,7 +40,7 @@ ros2 interface show [data type]
 
 ** Type the following command in a shell and observe the output: `ros2 topic echo /turtle1/pose`
 
-** Publish values in the topic `/turtle1/cmd_vel`, changing the values of the parameters `linear.x`, `linear.y`, and `angular.z`, as illustrated below. Observe the reaction of the robot to each command. Observe also the values of the topic `/turtle1/cmd_vel`.
+** Publish values in the topic `/turtle1/cmd_vel`, changing the values of the parameters `linear.x`, `linear.y`, and `angular.z`, as illustrated below. Observe the reaction of the robot to each command. Observe also the values of the topic `/turtle1/pose`.
 
   ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 1.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
   ros2 topic pub -1 /turtle1/cmd_vel geometry_msgs/msg/Twist  "{linear: {x: 0.0, y: 1.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}} "
