@@ -103,15 +103,18 @@ curl --request POST 'http://127.0.1.1:8080/agents/<agent_id>/command' --header '
 
 * Exercise 2.3.4 (communicating beliefs): change the code of bob so that, after print the greeting message, it sends a message to alice informing the current day of week. This information must have the form `day_of_week(Day)` (e.g. `day_of_week(sunday)'). Run the application and observe the output.
 
+
+For the exercises 2.3.5 to 2.3.9, consider that the environment is equipped with a link:https://github.com/CArtAgO-lang/cartago/blob/master/src/main/java/cartago/tools/Clock.java[`clock artifact`]. The agents observe the clock property `nticks`, which records the current time. They can also act upon the clock through the operations `start`(to start the clock), `stop` (to stop the clock), and `setFrequency`, to set the frequency that the frequency the clock is updated.
+
 * Exercise 2.3.5 (getting beliefs from perception - part 1). Open the folder link:hands-on/part2/ex2[`hands-on/part2/ex2`] with the Visual Studio Code. Run the application. Go to the link:http://localhost:3272/[_mind inspector_] and observe the beliefs of agents `bob` and `marie`. Open the JaCaMo application file (link:hands-on/part2/ex2/agents_intro.jcm[`agents_intro.jcm`]) and the personal assistant agent code (file link:hands-on/part2/ex2/src/agt/personal_assistant.asl[`src/agt/personal_assistant.asl`]). 
 
 * Exercise 2.3.6 (getting beliefs from perception - part 2): make both the agents to print the clock value every 10 seconds.
 
 * Exercise 2.3.7 (understandng goals):  in the agent code available at file link:hands-on/part2/ex2/src/agt/personal_assistant.asl[`hands-on/part2/ex2/src/agt/personal_assistant.asl`], what is the type of the `!start_clock`(declarative or procedural)?
 
-* Exercise 2.3.7 (specifying declarative goals I): implement a new version of the MAS available at link:hands-on/part2/ex2/agents_intro.jcm[`hands-on/part2/ex2/`] including the declarative goal `clock_finished(T)`, which is to be achieved when the clock is finished after a time equal or higher to `T`. To this end, (i) add a plan to satisfy this goal in agent code (link:hands-on/part2/ex2/src/agt/personal_assistant.asl[`src/agt/personal_assistant.asl`]) and (ii) add to the agent `bob`  the goal to have the clock finished at the time 50000.
+* Exercise 2.3.8 (specifying declarative goals I): implement a new version of the MAS available at link:hands-on/part2/ex2/agents_intro.jcm[`hands-on/part2/ex2/`] including the declarative goal `clock_finished(T)`, which is to be achieved when the clock is finished after a time equal or higher to `T`. To this end, (i) add a plan to satisfy this goal in agent code (link:hands-on/part2/ex2/src/agt/personal_assistant.asl[`src/agt/personal_assistant.asl`]) and (ii) add to the agent `bob`  the goal to have the clock finished at the time 50000.
 
-* Exercise 2.3.7 (specifying maintenance goals): make alice to print the clock value every 10 seconds.
+* Exercise 2.3.9 (specifying maintenance goals): make alice to print the clock value every 10 seconds.
 
 ==== Questons:
 * Where to the beliefs come from?
