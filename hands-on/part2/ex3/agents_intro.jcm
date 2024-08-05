@@ -1,0 +1,23 @@
+mas agents_intro {
+
+    agent bob: personal_assistant.asl {
+        beliefs: language(english) //initial belief of the agent bob
+        goals: greet, get_time_elapsed(50000)//initial goal of the agent bob
+        focus: wsp.clock
+    }
+    
+ 
+
+    agent tom: random_clock_manager.asl {
+        goals: manage_clock  //initial goal of the agent tom
+        focus: wsp.clock
+    }
+
+    workspace wsp {
+        artifact clock: cartago.tools.Clock
+    }
+
+    platform: jacamo.rest.JCMRest("--rest-port 8080")
+
+    
+}
