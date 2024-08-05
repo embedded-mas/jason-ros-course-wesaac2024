@@ -72,7 +72,7 @@ ros2 interface show [data type]
 
 === Task 2.1: Run the first JaCaMo application
 
-Clone the repository at (https://github.com/maiquelb/jacamo-wesaac2023). Open the folder link:hands-on/part2/ex1[`hands-on/part2/ex1`] with the Visual Studio Code (or access it in the terminal).  Then, run the project by typing the command below in the terminal:
+Open the folder link:hands-on/part2/ex1[`hands-on/part2/ex1`] with the Visual Studio Code (or access it in the terminal).  Then, run the project by typing the command below in the terminal:
 
 ----
 jacamo agents_intro.jcm 
