@@ -117,11 +117,6 @@ For the exercises 2.3.5 to 2.3.9, consider that the environment is equipped with
 
 * Exercise 2.3.9 (specifying maintenance goals): make alice to print the clock value every 10 seconds.
 
-==== Questons:
-* Where to the beliefs come from?
-* Where are the actions implemented?
-
-=== Task 2.1 Understanting and programming beliefs
 
 == Part 3: Introduction to Jason-ROS
 
