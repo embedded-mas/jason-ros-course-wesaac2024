@@ -61,9 +61,7 @@ ros2 interface show [data type]
 
 * Exercise 1.2.4. Type the command below in a shell and observe the behaviour of the turtle. Try different values for the fields `linear`, and `angular`.
 
-----
  ros2 service call /turtle1/teleport_relative turtlesim/srv/TeleportRelative "{linear: 1.0, angular: 1.0}"
-----
 
 * Exercise 1.2.5. Use the service `/turtle1/teleport_relative` to move the robot by 2 units of distance of 2 to the right and then upwards.
 
