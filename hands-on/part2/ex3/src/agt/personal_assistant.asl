@@ -6,10 +6,10 @@
     <- .print("bonjour.").                
 
 
-//print the current clock every 5 seconds
-+nticks(X) : not(last_clock(L))| (last_clock(L)&X>=L+5000)
-   <- .print("Current clock: ", X);
-      -+last_clock(X).
+//print the current clock every 10000 ticks
++nticks(X) : X mod 10000 == 0
+   <- .print("Current clock: ", X).
+
 
 
 //-------------------------------------------------------------    

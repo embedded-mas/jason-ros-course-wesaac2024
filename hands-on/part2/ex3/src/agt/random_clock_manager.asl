@@ -1,5 +1,5 @@
-//5% of chance to start the clock
-+!manage_clock : .random(X) & X > 0.90 & .random(T)
+//20% of chance to start the clock
++!manage_clock : .random(X) & X >= 0.80 & .random(T)
    <- .print("I am starting the clock.");
       start;
       .wait(T*10000); //wait a random time to act again
@@ -7,15 +7,15 @@
       .
 
 
-//5% of chance to stop the clock
-+!manage_clock : .random(X) & X < 0.10 & .random(T) & nticks(N)
+//20% of chance to stop the clock
++!manage_clock : .random(X) & X <= 0.20 & .random(T) & nticks(N)
    <- .print("I am stopping the clock at time ", N);
       stop;
       .wait(T*10000); //wait a random time to act again
       !manage_clock;
       .      
 
-//90% of chance to just wait
+//60% of chance to just wait
 +!manage_clock : .random(T)
    <- .wait(T*10000); //wait a random time to act again
       !manage_clock;

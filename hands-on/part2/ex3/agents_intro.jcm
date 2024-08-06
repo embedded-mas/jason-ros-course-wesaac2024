@@ -2,7 +2,7 @@ mas agents_intro {
 
     agent bob: personal_assistant.asl {
         beliefs: language(english) //initial belief of the agent bob
-        goals: greet, get_time_elapsed(50000)//initial goal of the agent bob
+        goals: greet, get_time_elapsed(1000000)//initial goal of the agent bob
         focus: wsp.clock
     }
     
