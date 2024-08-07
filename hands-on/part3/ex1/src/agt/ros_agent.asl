@@ -3,13 +3,14 @@
    <- .print("My energy is ", L).
    
 
-//TODO: Exercise 3.1.3. Extend the code of the agent of to print its current position (X,Y) when it changes.
-+position(X,Y)
-   <- .print("My position is (",X,",",Y,")").
-
-
-
 //TODO: Exercise 3.1.2: Extend this implementation to print the current environmental safety status when it changes.
+
+
+
+//TODO: Exercise 3.1.3. Extend the code of the agent of to print its current position (X,Y) when it changes.
+
+
+
 
 
 
