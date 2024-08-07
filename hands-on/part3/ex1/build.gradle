@@ -35,10 +35,15 @@ repositories {
 }
 
 dependencies {
-    //implementation('org.jacamo:jacamo:1.2')
-    //implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
     implementation 'org.jacamo:jacamo:1.2.3'
-    implementation "embedded-mas:embedded-mas:0.059018-ROS" 
+    implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
+    implementation 'org.yaml:snakeyaml:2.0'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 sourceSets {
@@ -52,11 +57,12 @@ sourceSets {
         }
         resources {
             srcDir 'src/resources'
+            srcDir 'src/agt'
         }
     }
 }
 
-task run (type: JavaExec, dependsOn: 'classes') {
+task run (type: JavaExec, dependsOn: ['compileGeneratedInternalActions','classes']) {
     group       ' JaCaMo'
     description 'runs the JaCaMo application'
     doFirst {
@@ -67,6 +73,26 @@ task run (type: JavaExec, dependsOn: 'classes') {
     // jvmArgs '-Xss15m'
     classpath sourceSets.main.runtimeClasspath
 }
+
+// Generate internal actions
+task generateInternalActions(type: JavaExec) {
+    group = 'Application'
+    description = 'Generate custom internal actions'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'embedded.mas.bridges.jacamo.InternalActionGenerator'
+
+}
+
+
+
+// Compile the generated internal actions
+task compileGeneratedInternalActions(type: JavaCompile) {
+     source = fileTree('build/generated/sources')
+    classpath = sourceSets.main.compileClasspath
+    destinationDir = destinationDir = file("$buildDir/classes/java/generated") // Define o diretório de destino para a compilação
+    dependsOn generateInternalActions
+}
+
 
 task buildJCMDeps (type: JavaExec, dependsOn: 'classes') {
     mainClass = 'jacamo.infra.RunJaCaMoProject'
