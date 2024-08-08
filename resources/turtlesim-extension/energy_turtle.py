@@ -98,15 +98,16 @@ class TurtleSimNode(Node):
                 alarm = 2
                 command = f'ros2 topic pub /turtle2/alarm std_msgs/msg/String "data: critical"'
                 subprocess.Popen(command, shell=True)
-            if alarm > 0:
-                self.get_logger().info("**** Critical alarm level *****")
-                command = f'ros2 param set /turtlesim background_r 255 && ros2 param set /turtlesim background_g 0 && ros2 param set /turtlesim background_b 0 && ros2 service call /clear std_srvs/srv/Empty'
-                subprocess.Popen(command, shell=True)
+            #if alarm > 0:
+            #    self.get_logger().info("**** Critical alarm level *****")
+            #    command = f'ros2 param set /turtlesim background_r 255 && ros2 param set /turtlesim background_g 0 && ros2 param set /turtlesim background_b 0 && ros2 service call /clear std_srvs/srv/Empty'
+            #    subprocess.Popen(command, shell=True)
         else:
             move_to_safe = random.uniform(0, 100)
             if move_to_safe <= 20:
                 alarm = 0
-                command = f'ros2 param set /turtlesim background_r 69 && ros2 param set /turtlesim background_g 86 && ros2 param set /turtlesim background_b 255 && ros2 service call /clear std_srvs/srv/Empty && ros2 topic pub /turtle1/alarm std_msgs/msg/String "data: safe" && ros2 topic pub /turtle2/alarm std_msgs/msg/String "data: safe"'
+                #command = f'ros2 param set /turtlesim background_r 69 && ros2 param set /turtlesim background_g 86 && ros2 param set /turtlesim background_b 255 && ros2 service call /clear std_srvs/srv/Empty && ros2 topic pub /turtle1/alarm std_msgs/msg/String "data: safe" && ros2 topic pub /turtle2/alarm std_msgs/msg/String "data: safe"'
+                command = f'ros2 topic pub /turtle1/alarm std_msgs/msg/String "data: safe" && ros2 topic pub /turtle2/alarm std_msgs/msg/String "data: safe"'
                 subprocess.Popen(command, shell=True)
                 self.get_logger().info("**** Safe alarm level *****")
         
