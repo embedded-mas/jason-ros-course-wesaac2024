@@ -97,7 +97,7 @@ class TurtleSimNode(Node):
 
             subprocess.Popen(command, shell=True)
         else:
-           command = f'ros2 service call /kill turtlesim/srv/Kill "{name: turtle1}"'
+           command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
            subprocess.Popen(command, shell=True)
 
 
