@@ -38,7 +38,7 @@ dependencies {
     //implementation('org.jacamo:jacamo:1.2')
     //implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
     implementation 'org.jacamo:jacamo:1.2.3'
-    implementation "embedded-mas:embedded-mas:0.059018-ROS" 
+    implementation "embedded-mas:embedded-mas:0.059-SNAPSHOT" 
     implementation 'org.yaml:snakeyaml:2.0'
 }
 
