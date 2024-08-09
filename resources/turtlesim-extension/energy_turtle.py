@@ -81,6 +81,7 @@ class TurtleSimNode(Node):
               increment = int(increment/(self.vel_turtle1+3))
            self.energy_turtle1 = min(self.energy_turtle1 + increment, 1000)  # ensure max energy = 1000
            self.get_logger().info(f'Energy turtle 1 recharged by {increment}, new energy: {self.energy_turtle1}')
+        time.sleep(2)   
         return Empty.Response() 
 
     def timer_callback(self):
