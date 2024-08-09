@@ -207,7 +207,7 @@ In the exercises 3.2.1 to 3.2.3, consider that the actions of the agent can be c
 
 [[imgenvsmartroom]]
 .smart room scenario
-image::resources/figs/turtle_square.png[]
+image::resources/figs/turtle_square.png[align=center, width=50%]
 
 ex3: implementar a ação move, mover-se uma unidade à frente e  uma acima
 ex3: desenhar um quadrado (usar crenças e ações juntos)
