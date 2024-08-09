@@ -79,7 +79,7 @@ class TurtleSimNode(Node):
            increment = random.randint(10, 50)  
            if self.vel_turtle1 >= 0: #recharge slower if the turtle is moving
               increment = increment/(self.vel_turtle1+1)
-           self.energy_turtle1 = min(self.energy_turtle1 + increment, 1000)  # ensure max energy = 100
+           self.energy_turtle1 = min(self.energy_turtle1 + increment, 1000)  # ensure max energy = 1000
            self.get_logger().info(f'Energy turtle 1 recharged by {increment}, new energy: {self.energy_turtle1}')
         return Empty.Response() 
 
@@ -88,8 +88,12 @@ class TurtleSimNode(Node):
         global pen_turtle1
         global pen_turtle2        
         print("Energy turtle 1: " + str(self.energy_turtle1))
-        min_vel = abs(self.vel_turtle1) * 10
-        max_vel = abs(self.vel_turtle1) * 200
+        if self.vel_turtle1 == 0 :
+           min_vel=1
+           max_vel=20
+        else:
+           min_vel = abs(self.vel_turtle1) * 10
+           max_vel = abs(self.vel_turtle1) * 200
         self.energy_turtle1 -= random.uniform(min_vel, max_vel)   
         if self.energy_turtle1 > 0:                     
             if self.energy_turtle1 >= 35:
