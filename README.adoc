@@ -203,6 +203,12 @@ In the exercises 3.2.1 to 3.2.3, consider that the actions of the agent can be c
 
 * Exercise 3.2.3: Improve the implementation of Exercise 3.2.2. Make the robot to draw  a square with side length 2.
 
+* Exercise 3.3. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex2[`hands-on/part3/exe`]. This is a system where a robot has the mission to navigate the entire environment in square-shaped routes. It begins at the coordinate (1,1) and runs along a square route of side length 9. Then, it moves (i) to the coordinate (2,2) and runs along a square route of side length 7, (ii) to (3,3) and runs along a square route of side length 5, (iii) to (4,4) and runs along a square route of side length 3, and (iv) to (5,5) and runs along a square route of side length 1. 
+
+[[imgenvsmartroom]]
+.smart room scenario
+image::resources/figs/turtle_square.png[]
+
 ex3: implementar a ação move, mover-se uma unidade à frente e  uma acima
 ex3: desenhar um quadrado (usar crenças e ações juntos)
 
