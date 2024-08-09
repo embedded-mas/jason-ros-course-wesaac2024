@@ -77,6 +77,8 @@ class TurtleSimNode(Node):
     def do_recharge_turtle1(self, request, response):
         if self.energy_turtle1 < 1000:
            increment = random.randint(10, 50)  
+           if self.vel_turtle1 >= 0: #recharge slower if the turtle is moving
+              increment = increment/(self.vel_turtle1+1)
            self.energy_turtle1 = min(self.energy_turtle1 + increment, 1000)  # ensure max energy = 100
            self.get_logger().info(f'Energy turtle 1 recharged by {increment}, new energy: {self.energy_turtle1}')
         return Empty.Response() 
