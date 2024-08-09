@@ -7,6 +7,7 @@ from std_srvs.srv import Empty
 from std_msgs.msg import Int32
 import rclpy
 from rclpy.node import Node
+from geometry_msgs.msg import Twist
 
 # Variáveis globais
 energy_turtle1 = -1
@@ -25,6 +26,9 @@ class TurtleSimNode(Node):
         self.publisher1 = self.create_publisher(Int32, '/turtle1/energy', 10)
         self.publisher2 = self.create_publisher(Int32, '/turtle2/energy', 10)
         self.create_subscription(Int32, '/turtle1/energy', self.callback_turtle1, 10)
+        
+        self.create_subscription(Twist, '/turtle1/cmd_vel', self.callback_vel_turtle1, 2)
+        
         self.create_subscription(Int32, '/turtle2/energy', self.callback_turtle2, 10)
         self.service = self.create_service(Empty, 'turtle1/consume_energy', self.consume_energy)
         
@@ -38,6 +42,7 @@ class TurtleSimNode(Node):
         
         self.energy_turtle1 = -1
         self.energy_turtle2 = -1
+        self.vel_turtle1 = 0
         
     def create_random_timer(self):
         # Set a random interval betweem 1 and 20 seconds
@@ -50,6 +55,15 @@ class TurtleSimNode(Node):
     def callback_turtle1(self, msg):
         self.energy_turtle1 = msg.data
         self.get_logger().info(f'Recebido energy turtle 1: {self.energy_turtle1}')
+        
+    def callback_vel_turtle1(self,msg):
+        self.vel_turtle1 = (msg.linear.x +
+                            msg.linear.y +
+                            msg.linear.z +
+                            msg.angular.x +
+                            msg.angular.y +
+                            msg.angular.z )    
+        self.get_logger().info(f'Recebido vel turtle 1: {self.vel_turtle1}')
 
     def callback_turtle2(self, msg):
         self.energy_turtle2 = msg.data
