@@ -88,7 +88,7 @@ class TurtleSimNode(Node):
         print("Energy turtle 1: " + str(self.energy_turtle1))
         if self.energy_turtle1 > 0:
             min_vel = abs(self.vel_turtle1) * 10
-            max_vel = abs(self.vel_turtle1) * 100
+            max_vel = abs(self.vel_turtle1) * 200
             self.energy_turtle1 -= random.uniform(min_vel, max_vel)
             self.publisher1.publish(Int32(data=int(self.energy_turtle1)))
             if self.energy_turtle1 >= 35:
