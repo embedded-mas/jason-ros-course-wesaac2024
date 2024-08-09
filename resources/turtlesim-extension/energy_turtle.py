@@ -93,10 +93,13 @@ class TurtleSimNode(Node):
             self.publisher1.publish(Int32(data=int(self.energy_turtle1)))
             if self.energy_turtle1 >= 35:
                 pen_turtle1[2] = int((int(self.energy_turtle1)/10 - 35) * 255 / 65)
-            #command = f'ros2 service call /turtle1/set_pen turtlesim/srv/SetPen "{pen_turtle1[0]} {pen_turtle1[1]} {pen_turtle1[2]} {pen_turtle1[3]} 0"'
             command = f"ros2 service call /turtle1/set_pen turtlesim/srv/SetPen \"{{'r': {pen_turtle1[0]}, 'g': {pen_turtle1[1]}, 'b': {pen_turtle1[2]}, 'width': {pen_turtle1[3]}, 'off': 0}}\""
 
             subprocess.Popen(command, shell=True)
+        else:
+           command = f'ros2 service call /kill turtlesim/srv/Kill "{name: turtle1}"'
+           subprocess.Popen(command, shell=True)
+
 
         if self.energy_turtle2 > 0:
             self.energy_turtle2 -= random.uniform(1, energy_decrement_max)
