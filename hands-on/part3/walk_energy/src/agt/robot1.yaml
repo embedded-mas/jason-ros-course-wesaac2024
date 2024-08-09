@@ -35,9 +35,6 @@
     serviceRequestActions:
         - actionName: recharge_battery
           serviceName: /turtle1/do_recharge
-          params:
-            - time
-            - charging_current 
         - actionName: move_to
           serviceName: /turtle1/teleport_absolute
           params: 
