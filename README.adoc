@@ -8,7 +8,6 @@
 :prewrap!:
 
 
-Tutorial on Jason-ROS - WESAAC 2024
 
 == Preliminaries
 === Running ROS
