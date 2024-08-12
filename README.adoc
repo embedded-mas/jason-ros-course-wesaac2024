@@ -13,10 +13,20 @@ This guide contains practical material for the tutorial _Development of autonomo
 The slides presented in the tutorial are available link:https://www.dropbox.com/scl/fi/ueq9zwtv7ogtkdyngwn11/slides.pdf?rlkey=ci3028y1dt6zeta6bhob5r5jv&e=1&dl=0[here].
 
 == Preliminaries
+
+=== Getting the course resources
+Clone the repository at https://github.com/embedded-mas/jason-ros-course-wesaac2024 using the following command:
+----
+git clone https://github.com/embedded-mas/jason-ros-course-wesaac2024.git
+----
+
 === Running ROS
 This course requires to install ROS (either version 1 or 2) and the link:http://wiki.ros.org/turtlesim[turtlesim simulator]. 
 
-As alternative, use the script link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/resources/ros-launch.sh[`resources/ros-launch.sh`] to launck a docker container with all the requirements.
+As alternative, use the script link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/resources/ros-launch.sh[`resources/ros-launch.sh`] to launch a Docker container with all the requirements. From the root of the cloned repository, use the following command:
+----
+./resources/ros-launch.sh
+----
 
 When the container is launched, go to link:http://localhost:8080/vnc.html[`http://localhost:8080/vnc.html`] to inspect the simulation.
 
