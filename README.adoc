@@ -195,7 +195,11 @@ Besides, the simulator provides the following services:
 
 === Task 3.1: Configuring perceptions
 
-* Exercise 3.1.1. Open the folder link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`hands-on/part3/ex1`] with the Visual Studio Code (or access it in the terminal). Run the JaCaMo application using `./jacamo-ros`. In parallel, check the value of the topic `/turtle1/energy` using the command `ros2 topic echo /turtle1/energy`. Check the beliefs of the agent `robot1` in the mind inspector available at link:http://127.0.1.1:3272/[http://127.0.1.1:3272]. Compare the beliefs of the agent with the value of the topic `/turtle1/energy`. Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/robot1.yaml[`src/agt/robot1.yaml`]. Change the value of the topic using the command ros2 topic pub /turtle1/energy std_msgs/msg/Int32 '{data: <VALUE>}' (replacing VALUE by some integer value) and observe the behaviour of the agent.
+* Exercise 3.1.1. Open the folder link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex1[`hands-on/part3/ex1`] with the Visual Studio Code (or access it in the terminal). Run the JaCaMo application using `./jacamo-ros`. In parallel, check the value of the topic `/turtle1/energy` using the command `ros2 topic echo /turtle1/energy`. 
+** Check the beliefs of the agent `robot1` in the mind inspector available at link:http://127.0.1.1:3272/[http://127.0.1.1:3272]. 
+** Compare the beliefs of the agent with the value of the topic `/turtle1/energy`. 
+** Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/robot1.yaml[`src/agt/robot1.yaml`]. 
+** Change the value of the topic using the command `ros2 topic pub /turtle1/energy std_msgs/msg/Int32 '{data: <VALUE>}'` (replacing `VALUE` by some positive integer value) and observe the behaviour of the agent.
 
 * Exercise 3.1.2. In the same application from the previous exerise, the file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent that simply prints its battery level. Extend this implementation to print the current environmental safety status when it changes. The agent records this information in the belief `security_level(L)`.
 
@@ -218,10 +222,7 @@ In the exercises 3.2.1 to 3.2.3, consider that the actions of the agent can be c
 == Part 4: Advancing on Jason-ROS
 
 
-* Exercise 4.1. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part3/ex2[`hands-on/part3/exe`]. This is a system where a robot has the mission to navigate the entire environment in square-shaped routes. It begins at the coordinate (1,1) and runs along a square route of side length 9. Then, it moves (i) to the coordinate (2,2) and runs along a square route of side length 7, (ii) to (3,3) and runs along a square route of side length 5, (iii) to (4,4) and runs along a square route of side length 3, and (iv) to (5,5) and runs along a square route of side length 1. The energy of the robot decreases as it moves. The faster it moves, the more energy it consumes. If the energy reaches zero, the robot is destroyed. Implement the agent so that it accomplishes its mission.
-
-** The belief `velocity(V)` records the velocity `V` the robot decides to move (in any direction).
-** It may be necessary to slow down to avoid exceeding the limit point before changing the direction. Consider to use the rule `control_factor(D,P,F)` to calculate a control factor `F` (s.t. `F<0`) to multiply by the default velocity. This factor is calculated as a function of the traveled distance `P` and the distance to travel `D`.
+* Exercise 4.1. Open the JaCaMo application at link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/tree/main/hands-on/part4/ex1[`hands-on/part4/ex1`]. This is a system where a robot has the mission to navigate the entire environment in square-shaped routes. It begins at the coordinate (1,1) and runs along a square route of side length 9. Then, it moves (i) to the coordinate (2,2) and runs along a square route of side length 7, (ii) to (3,3) and runs along a square route of side length 5, (iii) to (4,4) and runs along a square route of side length 3, and (iv) to (5,5) and runs along a square route of side length 1. 
 
 
 [[imgenvsmartroom]]
@@ -230,6 +231,11 @@ In the exercises 3.2.1 to 3.2.3, consider that the actions of the agent can be c
 image::resources/figs/turtle_square.png[width=50%]
 ====
 
-=== Implementing complex behaviours
-=== Programming multi-robot systems
-=== Customizing internal actions
+
+
+The energy of the robot decreases as it moves. The faster it moves, the more energy it consumes. If the energy reaches zero, the robot is destroyed. Implement the agent so that it accomplishes its mission.
+
+** The belief `velocity(V)` records the velocity `V` the robot decides to move (in any direction).
+** It may be necessary to slow down to avoid exceeding the limit point before changing the direction. Consider to use the rule `control_factor(D,P,F)` to calculate a control factor `F` (s.t. `F<0`) to multiply by the default velocity. This factor is calculated as a function of the traveled distance `P` and the distance to travel `D`.
+
+
