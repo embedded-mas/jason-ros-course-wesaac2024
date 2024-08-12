@@ -237,5 +237,6 @@ The energy of the robot decreases as it moves. The faster it moves, the more ene
 
 ** The belief `velocity(V)` records the velocity `V` the robot decides to move (in any direction).
 ** It may be necessary to slow down to avoid exceeding the limit point before changing the direction. Consider to use the rule `control_factor(D,P,F)` to calculate a control factor `F` (s.t. `F<0`) to multiply by the default velocity. This factor is calculated as a function of the traveled distance `P` and the distance to travel `D`.
+** The comment "TODO: ..." suggest the place where the changes can be implemented in the link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part4/ex1/src/agt/ros_agent.asl[agent source code].
 
 
