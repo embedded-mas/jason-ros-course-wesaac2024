@@ -235,6 +235,3 @@ The energy of the robot decreases as it moves. The faster it moves, the more ene
 ** It may be necessary to slow down to avoid exceeding the limit point before changing the direction. Consider to use the rule `control_factor(D,P,F)` to calculate a control factor `F` (s.t. `F<0`) to multiply by the default velocity. This factor is calculated as a function of the traveled distance `P` and the distance to travel `D`.
 
 
-=== Implementing complex behaviours
-=== Programming multi-robot systems
-=== Customizing internal actions
