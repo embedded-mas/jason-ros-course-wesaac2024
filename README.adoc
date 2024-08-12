@@ -8,6 +8,9 @@
 :prewrap!:
 
 
+This guide contains practical material for the tutorial _Development of autonomous robots with BDI agents and ROS_ at https://wesaac2024.unb.br/[18th Workshop-School on Agents, Environments and Applications (WESAAC 2024)], 2024, Brasília - Brazil.
+
+The slides presented in the tutorial are available link:https://www.dropbox.com/scl/fi/ueq9zwtv7ogtkdyngwn11/slides.pdf?rlkey=ci3028y1dt6zeta6bhob5r5jv&e=1&dl=0[here].
 
 == Preliminaries
 === Running ROS
