@@ -25,7 +25,7 @@ This course requires to install ROS (either version 1 or 2) and the link:http://
 
 As alternative, use the script link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/resources/ros-launch.sh[`resources/ros-launch.sh`] to launch a Docker container with all the requirements. From the root of the cloned repository, use the following command:
 ----
-./resources/ros-launch.sh
+./resources/ros-wesaac2024.sh
 ----
 
 When the container is launched, go to link:http://localhost:8080/vnc.html[`http://localhost:8080/vnc.html`] to inspect the simulation.
