@@ -16,6 +16,7 @@ time_to_wait_min = 1
 time_to_wait_max = 5
 energy_decrement_max = 50
 alarm = 0
+kill_energy = True
 
 pen_turtle1 = [255, 255, 255, 12, 0]
 pen_turtle2 = [255, 255, 255, 12, 0]
@@ -88,6 +89,7 @@ class TurtleSimNode(Node):
         global alarm
         global pen_turtle1
         global pen_turtle2        
+        global kill_energy
         print("Energy turtle 1: " + str(self.energy_turtle1))
         if self.vel_turtle1 == 0 :
            min_vel=1
@@ -104,8 +106,9 @@ class TurtleSimNode(Node):
             subprocess.Popen(command, shell=True)
         else:
            self.energy_turtle1 = 0
-           command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
-           subprocess.Popen(command, shell=True)
+           if kill_energy == True:
+              command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
+              subprocess.Popen(command, shell=True)
         self.publisher1.publish(Int32(data=int(self.energy_turtle1)))   
 
 
