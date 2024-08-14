@@ -89,6 +89,10 @@ Exercise 2.1.1. Open the folder link:hands-on/part2/ex1[`hands-on/part2/ex1`] wi
 ----
 jacamo agents_intro.jcm 
 ----
+or
+----
+./gradlew run
+----
 
 
 
