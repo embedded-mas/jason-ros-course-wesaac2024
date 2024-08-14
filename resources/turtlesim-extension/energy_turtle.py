@@ -106,9 +106,9 @@ class TurtleSimNode(Node):
             subprocess.Popen(command, shell=True)
         else:
            self.energy_turtle1 = 0
-           if kill_energy == True:
-              command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
-              subprocess.Popen(command, shell=True)
+           #if kill_energy == True:
+           #   command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
+           #   subprocess.Popen(command, shell=True)
         self.publisher1.publish(Int32(data=int(self.energy_turtle1)))   
 
 
