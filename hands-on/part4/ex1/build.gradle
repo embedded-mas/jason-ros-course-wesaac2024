@@ -35,10 +35,8 @@ repositories {
 }
 
 dependencies {
-    //implementation('org.jacamo:jacamo:1.2')
-    //implementation('embedded-mas:embedded-mas:0.059-SNAPSHOT')
     implementation 'org.jacamo:jacamo:1.2.3'
-    implementation "embedded-mas:embedded-mas:0.059-SNAPSHOT" 
+    implementation "embedded-mas:embedded-mas:0.059" 
     implementation 'org.yaml:snakeyaml:2.0'
 }
 
@@ -82,7 +80,7 @@ task generateInternalActions(type: JavaExec) {
     description = 'Generate custom internal actions'
     classpath = sourceSets.main.runtimeClasspath
     //main = 'com.example.InternalActionGenerator'
-    main = 'InternalActionGenerator'
+    main = 'embedded.mas.bridges.jacamo.InternalActionGenerator'
 
 }
 
