@@ -128,10 +128,12 @@ For the exercises 2.3.5 to 2.3.9, consider that the environment is equipped with
 
 * Exercise 2.3.7 (understandng goals):  in the agent code available at file link:hands-on/part2/ex2/src/agt/personal_assistant.asl[`hands-on/part2/ex2/src/agt/personal_assistant.asl`], what is the type of the goal `!start_clock`(declarative or procedural)?
 
-* Exercise 2.3.8 (specifying declarative goals I): Consider that the agents may have the goal `get_time_elapsed(T)`, which is to be achieved when the clock runs by a time `T` being then stopped. Implement one or more plans to satisfy this goal and add to the agent `bob`  the goal to have the clock finished at the time 50000. Keep in mind that other agents can handle start/stop the clock. In particular, the agent `tom` may randomly start and stop it.
+* Exercise 2.3.8 (specifying maintenance goals): make alice to print the clock value every 10 seconds.
+
+* Exercise 2.3.9 (specifying declarative goals): Open the folder link:hands-on/part2/ex3[`hands-on/part2/ex3`] with the Visual Studio Code. Consider that the agents may have the goal `get_time_elapsed(T)`, which is to be achieved when the clock runs by a time `T` being then stopped. Implement one or more plans to satisfy this goal and add to the agent `bob`  the goal to have the clock finished at the time 50000. Keep in mind that other agents can handle start/stop the clock. In particular, the agent `tom` may randomly start and stop it.
 
 
-* Exercise 2.3.9 (specifying maintenance goals): make alice to print the clock value every 10 seconds.
+
 
 
 == Part 3: Introduction to Jason-ROS
