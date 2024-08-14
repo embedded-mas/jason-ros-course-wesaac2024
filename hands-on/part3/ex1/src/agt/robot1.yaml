@@ -5,7 +5,6 @@
   #className: the class that implements the interface between the parception/action systems and the device.
   #           This class provides means to convert (i) sensor values in perceptions and (ii) action of the agents and actuations performed by the physical actuators.
   #           Different interfaces can be implemented for different types of devices.
-  #className:  embedded.mas.bridges.ros.RosMaster
   className:  embedded.mas.bridges.ros.RosMaster
   # A device contains a microcontroller, that is an interface that provides access to external devices to get percepts and perform actuations
   # Different microcontrollers have different parameters depending on their nature. For example, serial devices like Arduino require to configure serial ports and baudrates.
@@ -16,7 +15,6 @@
       #className: The class that implements the interface with the microcontroller.
       #           This class provides means to read from and write to the microcontroller. 
       #           Different interfaces can be implemented for different types of microcontrollers.
-      #className: DefaultRos4EmbeddedMas  
       className: DefaultRos4Bdi
       #perceptionTopics: List of topics whose values are converted into perceptions.
       #                  Each topic requires to define its name and its type.   
