@@ -207,7 +207,7 @@ Besides, the simulator provides the following services:
 ** Analyze the relations between the agent's beliefs and the file configurations in the file  link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/robot1.yaml[`src/agt/robot1.yaml`]. 
 ** Change the value of the topic using the command `ros2 topic pub /turtle1/energy std_msgs/msg/Int32 '{data: <VALUE>}'` (replacing `VALUE` by some positive integer value) and observe the behaviour of the agent.
 
-* Exercise 3.1.2. In the same application from the previous exerise, the file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent that simply prints its battery level. Extend this implementation to print the current environmental safety status when it changes. This status is recorded in the ROS topic `/turtle1/alarm`.
+* Exercise 3.1.2. In the same application from the previous exercise, the file link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part3/ex1/src/agt/ros_agent.asl[`src/agt/ros_agent.asl`] is the source code of an agent that simply prints its battery level. Extend this implementation to print the current environmental safety status when it changes. This status is recorded in the ROS topic `/turtle1/alarm`.
 
 * Exercise 3.1.3. Extend the code of the agent of to print its current position (X,Y) when it changes. The agent records this information in the belief `position(X,Y)`. To test the position changing, move the robot with the following command:
 ```
