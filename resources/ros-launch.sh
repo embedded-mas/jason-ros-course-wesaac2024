@@ -1,9 +1,9 @@
-( sudo docker ps -q --filter "name=novnc" | grep -q . && sudo docker stop novnc || true) &&\
-( sudo docker ps -q --filter "name=turtles_example" | grep -q . && sudo docker stop turtles_example || true) &&\
-( sudo docker network ls --filter name=^ros$ --format="{{ .Name }}" | grep -q "^ros$" || sudo docker network create ros ) &&\
-sudo docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
+(  docker ps -q --filter "name=novnc" | grep -q . &&  docker stop novnc || true) &&\
+(  docker ps -q --filter "name=turtles_example" | grep -q . &&  docker stop turtles_example || true) &&\
+(  docker network ls --filter name=^ros$ --format="{{ .Name }}" | grep -q "^ros$" ||  docker network create ros ) &&\
+ docker run -d --rm --net=ros --env="DISPLAY_WIDTH=3000" --env="DISPLAY_HEIGHT=1800" --env="RUN_XTERM=no" --name=novnc -p=8080:8080 theasp/novnc:latest  && \
 sleep 2 &&\
-sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '\
+ docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.0" --env="ROS_MASTER_URI=http://localhost:11311" -p11311:11311 -p9090:9090 maiquelb/embedded-mas-ros2:0.5 /bin/bash -c '\
  ( \
   ( source /opt/ros/humble/setup.bash && ros2 run  turtlesim turtlesim_node) &\
   ( source /opt/ros/humble/setup.bash && cd ~/ &&\
@@ -25,6 +25,6 @@ sudo docker run -d --name turtles_example --rm --net=ros --env="DISPLAY=novnc:0.
   ( /bin/bash -c "source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml")\
  )' &&\
  sleep 2 &&\
- sudo docker exec turtles_example /bin/bash -c 'source /opt/ros/humble/setup.bash && ros2 topic pub -t 1 /turtle1/energy std_msgs/msg/Int32 "{data: 1000}"' &&\
- sudo docker exec turtles_example /bin/bash -c 'sleep 1 && source /opt/ros/humble/setup.bash && ros2 topic echo --once /turtle1/energy' &&\
+  docker exec turtles_example /bin/bash -c 'source /opt/ros/humble/setup.bash && ros2 topic pub -t 1 /turtle1/energy std_msgs/msg/Int32 "{data: 1000}"' &&\
+  docker exec turtles_example /bin/bash -c 'sleep 1 && source /opt/ros/humble/setup.bash && ros2 topic echo --once /turtle1/energy' &&\
  echo -e '\e[1;33m**** Docker container is ready. Start the JaCaMo application****\e[0m'
