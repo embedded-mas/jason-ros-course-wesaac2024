@@ -1,0 +1,1 @@
+./gradlew jacamo_ros && ./gradlew run
