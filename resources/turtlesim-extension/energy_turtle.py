@@ -16,7 +16,7 @@ time_to_wait_min = 1
 time_to_wait_max = 5
 energy_decrement_max = 50
 alarm = 0
-kill_energy = True
+#kill_energy = True
 
 pen_turtle1 = [255, 255, 255, 12, 0]
 pen_turtle2 = [255, 255, 255, 12, 0]
@@ -44,6 +44,9 @@ class TurtleSimNode(Node):
         self.energy_turtle1 = -1
         self.energy_turtle2 = -1
         self.vel_turtle1 = 0
+        
+        self.declare_parameter('kill_turtle', False) # set the parameter to True to kill the turtle when the energy reaches zero
+
         
     def create_random_timer(self):
         # Set a random interval betweem 1 and 20 seconds
@@ -89,7 +92,7 @@ class TurtleSimNode(Node):
         global alarm
         global pen_turtle1
         global pen_turtle2        
-        global kill_energy
+        #global kill_energy
         print("Energy turtle 1: " + str(self.energy_turtle1))
         if self.vel_turtle1 == 0 :
            min_vel=1
@@ -106,7 +109,8 @@ class TurtleSimNode(Node):
             subprocess.Popen(command, shell=True)
         else:
            self.energy_turtle1 = 0
-           if kill_energy == True:
+           #if kill_energy == True:
+           if self.get_parameter('kill_turtle').get_parameter_value().bool_value==True:
               command = f"ros2 service call /kill turtlesim/srv/Kill \"{{'name': turtle1}}\""
               subprocess.Popen(command, shell=True)
         self.publisher1.publish(Int32(data=int(self.energy_turtle1)))   
