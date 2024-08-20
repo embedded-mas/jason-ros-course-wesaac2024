@@ -246,4 +246,8 @@ The energy of the robot decreases as it moves. The faster it moves, the more ene
 ** It may be necessary to slow down to avoid exceeding the limit point before changing the direction. Consider to use the rule `control_factor(D,P,F)` to calculate a control factor `F` (s.t. `F<0`) to multiply by the default velocity. This factor is calculated as a function of the traveled distance `P` and the distance to travel `D`.
 ** The comment "TODO: ..." suggest the place where the changes can be implemented in the link:https://github.com/embedded-mas/jason-ros-course-wesaac2024/blob/main/hands-on/part4/ex1/src/agt/ros_agent.asl[agent source code].
 
-
+This exercise requires additional features of the turtlesim extended simulator. To activate them, use the following command from the root of the cloned repository:
+----
+./hands-on/part4/ex1/ros-launch.sh
+----
+If Docker requires sudo permissions, precede the command above with `sudo`.
