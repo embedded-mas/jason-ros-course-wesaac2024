@@ -14,18 +14,10 @@ apply from: '.jcm-deps.gradle' // this file contains dependencies declared in th
 version '1.0'
 group   'org.jacamo'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(18)
-    }
-}
 
 repositories {
     maven { url "https://raw.githubusercontent.com/jacamo-lang/mvn-repo/master" }
     maven { url "https://repo.gradle.org/gradle/libs-releases" }
-
-    //maven { url "http://jacamo.sourceforge.net/maven2" }
-    //maven { url "https://jade.tilab.com/maven/" }
 
     flatDir { dirs 'lib' }
 
